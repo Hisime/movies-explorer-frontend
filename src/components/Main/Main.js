@@ -1,8 +1,11 @@
 import './Main.css';
+import AboutProject from "../AboutProject/AboutProject";
 
 function Main() {
     return (
-<div>MAIN</div>
+    <main>
+        <AboutProject/>
+    </main>
     );
 }
 
