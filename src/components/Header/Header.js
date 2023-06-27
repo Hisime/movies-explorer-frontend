@@ -12,9 +12,13 @@ function Header({isLogged}) {
                     </svg>
                 </a>
                 {isLogged ?
-                    <div>
-                        login
-                    </div> :
+                    <>
+                        <ul className="header__navigation">
+                            <li><a href="#">Фильмы</a></li>
+                            <li><a href="#">Сохранённые фильмы</a></li>
+                        </ul>
+                    </>
+                     :
                     <div className="header__login">
                         <a href="" className="header__link">Регистрация</a>
                         <a href="" className="header__button">Войти</a>

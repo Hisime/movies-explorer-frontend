@@ -4,6 +4,10 @@
     padding-bottom: 18px;
 }
 
+.header--logged {
+    background-color: transparent;
+}
+
 .header__logo {
     transition: opacity 0.5s;
 }
