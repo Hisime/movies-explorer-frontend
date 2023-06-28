@@ -1,6 +1,6 @@
 import './MoviesCard.css';
 
-function MoviesCard({title, duration, imgSrc, isLiked}) {
+function MoviesCard({title, duration, imgSrc, isLiked, isRemovable}) {
     return (
         <div className="movies-card">
             <div className="movies-card__info">
@@ -9,7 +9,9 @@ function MoviesCard({title, duration, imgSrc, isLiked}) {
                     <p className="movies-card__duration">{duration}</p>
                 </div>
                 <button className="movies-card__save">
-                    {isLiked ? <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {isRemovable ? <div>kek</div> :
+
+                        isLiked ? <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="save9">
                             <rect id="tumb__COLOR:main-1" width="30" height="30" rx="15" fill="black"/>
                             <path id="icon__COLOR:invisible"

@@ -1,5 +1,5 @@
 .movies-card {
-    width: 364px;
+    max-width: 364px;
     background: #FDFDFD;
     box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
 }
@@ -46,9 +46,9 @@
 }
 
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
     .movies-card {
-        width: 339px;
+        max-width: 339px;
     }
 
     .movies-card__photo {
@@ -58,7 +58,7 @@
 
 @media screen and (max-width: 500px) {
     .movies-card {
-        width: 300px;
+        max-width: 300px;
     }
 
     .movies-card__photo {
