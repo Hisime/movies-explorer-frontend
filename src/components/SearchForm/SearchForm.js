@@ -19,10 +19,11 @@ function SearchForm() {
                     </svg>
                 </button>
             </div>
-            <div className="search-form__toggle">
-                <input className="search-form__switch" type="checkbox" id="switch"/><label className="search-form__switch-label" htmlFor="switch"></label>
-                <span className="search-form__switch-text">Короткометражки</span>
-            </div>
+            <label className="search-form__toggle">
+                <input className="search-form__switch" type="checkbox"/>
+                <span className="search-form__switch-label"></span>
+                Короткометражки
+            </label>
         </form>
     );
 }
