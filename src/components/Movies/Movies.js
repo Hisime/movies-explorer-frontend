@@ -7,6 +7,7 @@ import SearchForm from "../SearchForm/SearchForm";
 function Movies() {
     return (
         <>
+            <Header isLogged="true"/>
             <SearchForm/>
             <MoviesCardList/>
             <Footer/>

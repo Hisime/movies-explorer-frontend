@@ -1,23 +1,24 @@
 import './Header.css';
+import Logo from "../Logo/Logo";
 
 function Header({isLogged}) {
     return (
         <header className={`header ${isLogged ? 'header--logged' : ''}`}>
             <div className="block-wrapper header__inner">
-                <a className="header__logo" href="/">
-                    <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 12.6667C0 8.23292 0 6.01604 0.862865 4.32258C1.62186 2.83296 2.83296 1.62186 4.32258 0.862865C6.01604 0 8.23292 0 12.6667 0H25.3333C29.7671 0 31.984 0 33.6774 0.862865C35.167 1.62186 36.3781 2.83296 37.1371 4.32258C38 6.01604 38 8.23292 38 12.6667V25.3333C38 29.7671 38 31.984 37.1371 33.6774C36.3781 35.167 35.167 36.3781 33.6774 37.1371C31.984 38 29.7671 38 25.3333 38H12.6667C8.23292 38 6.01604 38 4.32258 37.1371C2.83296 36.3781 1.62186 35.167 0.862865 33.6774C0 31.984 0 29.7671 0 25.3333V12.6667Z" fill="black"/>
-                        <circle cx="19" cy="19" r="11" fill="white"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.1538 19C15.1538 21.1242 16.8758 22.8462 19 22.8462C21.1242 22.8462 22.8462 21.1242 22.8462 19H25C25 22.3137 22.3137 25 19 25C15.6863 25 13 22.3137 13 19H15.1538Z" fill="black"/>
-                    </svg>
-                </a>
+                <Logo/>
                 {isLogged ?
-                    <>
+                    <div className="header__right-part">
                         <ul className="header__navigation">
-                            <li><a href="#">Фильмы</a></li>
-                            <li><a href="#">Сохранённые фильмы</a></li>
+                            <li className="header__navigation-item"><a className="header__navigation-link header__navigation-link--active" href="#">Фильмы</a></li>
+                            <li className="header__navigation-item"><a className="header__navigation-link" href="#">Сохранённые фильмы</a></li>
                         </ul>
-                    </>
+                        <a href="#" className="header__account-link">
+                            Аккаунт
+                            <svg className="header__account-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path id="icon__COLOR:icon-main" fill-rule="evenodd" clip-rule="evenodd" d="M7.43004 7.96749C8.79146 7.40521 9.74951 6.06449 9.74951 4.5C9.74951 2.42893 8.07058 0.75 5.99951 0.75C3.92844 0.75 2.24951 2.42893 2.24951 4.5C2.24951 6.06451 3.20759 7.40525 4.56904 7.96751C3.17474 8.19979 1.89215 8.76573 0.808105 9.58019L2.18966 11.419C3.25095 10.6217 4.56849 10.1496 5.99961 10.1496C7.43073 10.1496 8.74828 10.6217 9.80957 11.419L11.1911 9.58019C10.107 8.7657 8.82439 8.19975 7.43004 7.96749Z" fill="black"/>
+                            </svg>
+                        </a>
+                    </div>
                      :
                     <div className="header__login">
                         <a href="" className="header__link">Регистрация</a>
