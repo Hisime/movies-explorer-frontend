@@ -16,8 +16,8 @@ function Register() {
                 <div className="register-section__bottom">
                     <FormButton text="Зарегистрироваться"/>
                     <div className="register-section__tip">
-                        <span className="register-section__tip-text">Ещё не зарегистрированы?</span>
-                        <a href="#" className="block-link">Регистрация</a>
+                        <span className="register-section__tip-text">Уже зарегистрированы?</span>
+                        <a href="/sign-in" className="block-link">Войти</a>
                     </div>
                 </div>
 

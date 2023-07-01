@@ -21,8 +21,8 @@ function Header({isLogged}) {
                     </div>
                      :
                     <div className="header__login">
-                        <a href="" className="header__link">Регистрация</a>
-                        <a href="" className="header__button">Войти</a>
+                        <a href="/sign-up" className="header__link">Регистрация</a>
+                        <a href="/sign-in" className="header__button">Войти</a>
                     </div>}
             </div>
         </header>
