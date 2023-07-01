@@ -9,7 +9,15 @@ function MoviesCard({title, duration, imgSrc, isLiked, isRemovable}) {
                     <p className="movies-card__duration">{duration}</p>
                 </div>
                 <button className="movies-card__save">
-                    {isRemovable ? <div>kek</div> :
+                    {isRemovable ?
+                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g id="d9">
+                                <rect id="back__COLOR:special-10" width="30" height="30" rx="15" fill="#F9F9F9"/>
+                                <path id="icon__COLOR:icon-main" fill-rule="evenodd" clip-rule="evenodd" d="M15.0005 15.9429L17.3575 18.2999L18.4182 17.2393L16.0611 14.8822L18.3004 12.643L17.2397 11.5823L15.0005 13.8216L12.7613 11.5824L11.7007 12.6431L13.9398 14.8822L11.5829 17.2391L12.6436 18.2998L15.0005 15.9429Z" fill="black"/>
+                            </g>
+                        </svg>
+
+                        :
 
                         isLiked ? <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="save9">

@@ -1,7 +1,9 @@
 import './Header.css';
 import Logo from "../Logo/Logo";
+import {useState} from "react";
 
-function Header({isLogged, isHeaderOpened, changeHeaderState}) {
+function Header({isLogged}) {
+    const [isHeaderOpened, setIsHeaderOpened] = useState(false);
     return (
         <header className={`header ${isLogged ? 'header--logged' : ''}`}>
             <div className="block-wrapper header__inner">
@@ -21,14 +23,14 @@ function Header({isLogged, isHeaderOpened, changeHeaderState}) {
                                 <path id="icon__COLOR:icon-main" fillRule="evenodd" clipRule="evenodd" d="M7.43004 7.96749C8.79146 7.40521 9.74951 6.06449 9.74951 4.5C9.74951 2.42893 8.07058 0.75 5.99951 0.75C3.92844 0.75 2.24951 2.42893 2.24951 4.5C2.24951 6.06451 3.20759 7.40525 4.56904 7.96751C3.17474 8.19979 1.89215 8.76573 0.808105 9.58019L2.18966 11.419C3.25095 10.6217 4.56849 10.1496 5.99961 10.1496C7.43073 10.1496 8.74828 10.6217 9.80957 11.419L11.1911 9.58019C10.107 8.7657 8.82439 8.19975 7.43004 7.96749Z" fill="black"/>
                             </svg>
                         </a>
-                        <button className="header__button-close" onClick={() => changeHeaderState(false)}>
+                        <button className="header__button-close" onClick={() => setIsHeaderOpened(false)}>
                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="7.16016" y="9.28249" width="3" height="22" transform="rotate(-45 7.16016 9.28249)" fill="black"/>
                                 <rect x="22.7168" y="7.16117" width="3" height="22" transform="rotate(45 22.7168 7.16117)" fill="black"/>
                             </svg>
                         </button>
                     </div>
-                    <button className="header__burger" onClick={() => changeHeaderState(!isHeaderOpened)}>
+                    <button className="header__burger" onClick={() => setIsHeaderOpened(true)}>
                         <svg className="header__burger-icon" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M36 14L8 14V11L36 11V14Z" fill="black"/>
                             <path fillRule="evenodd" clipRule="evenodd" d="M36 24L8 24V21L36 21V24Z" fill="black"/>
