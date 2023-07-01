@@ -20,6 +20,10 @@ body {
     transition: opacity 0.5s;
 }
 
+.block-link:hover {
+    opacity: 0.5;
+}
+
 @media screen and (max-width: 1200px) {
     .block-wrapper {
         padding-right: 70px;

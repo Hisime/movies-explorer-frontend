@@ -4,15 +4,20 @@ import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Register from "../Register/Register";
+import Login from "../Login/Login";
+import PageNotFound from "../PageNotFound/PageNotFound";
+import Profile from "../Profile/Profile";
 
 function App() {
   return (
       <Routes>
-        <Route path="/sign-up" element={<Register/>}/>
-        {/*<Route path="/sign-in" element={<Login handleLogin={onLogin}/>}/>*/}
-          <Route path={'/movies'} element={<Movies></Movies>}></Route>
-          <Route path={'/saved-movies'} element={<SavedMovies></SavedMovies>}></Route>
-          <Route path={'/'} element={<Main></Main>}></Route>
+          <Route path="/sign-up" element={<Register/>}/>
+          <Route path="/sign-in" element={<Login/>}/>
+          <Route path="/profile" element={<Profile/>}/>
+          <Route path={'/movies'} element={<Movies/>}/>
+          <Route path={'/saved-movies'} element={<SavedMovies/>}/>
+          <Route path={'/'} element={<Main/>}/>
+          <Route path={'*'} element={<PageNotFound/>}/>
       </Routes>
   );
 }
