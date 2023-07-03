@@ -16,14 +16,16 @@ function AboutProject() {
                 </div>
             </div>
             <table className="about__timing">
-                <tr>
-                    <td className="about__column about__timing-header about__timing-header--black">1 неделя</td>
-                    <td className="about__timing-header">4 недели</td>
-                </tr>
-                <tr>
-                    <td className="about__column about__techs">Back-end</td>
-                    <td className="about__techs">Front-end</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td className="about__column about__timing-header about__timing-header--black">1 неделя</td>
+                        <td className="about__timing-header">4 недели</td>
+                    </tr>
+                    <tr>
+                        <td className="about__column about__techs">Back-end</td>
+                        <td className="about__techs">Front-end</td>
+                    </tr>
+                </tbody>
             </table>
         </section>
     );
