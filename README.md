@@ -14,3 +14,6 @@
 ## Запуск проекта
 
 `npm run start`
+
+## Ссылка на макет
+https://disk.yandex.ru/d/YTyxsYZe3nXUyQ
