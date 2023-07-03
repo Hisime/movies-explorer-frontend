@@ -1,0 +1,90 @@
+.promo {
+    padding-top: 75px;
+    padding-bottom: 75px;
+    background-color: #F3C1F8;
+    background-image: url(../../images/text__COLOR_landing-logo.svg);
+    background-repeat: no-repeat;
+    background-position: top 75px right 70px;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.promo__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.promo__title {
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+    margin-top: 0;
+    margin-bottom: 36px;
+    max-width: 640px;
+}
+
+.promo__description {
+    font-size: 13px;
+    opacity: 0.5;
+    margin-top: 0;
+    margin-bottom: 146px;
+    max-width: 310px;
+}
+
+.promo__button {
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    background-color: transparent;
+    border-radius: 3px;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: opacity 0.5s;
+}
+
+.promo__button:hover {
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 768px) {
+    .promo__title {
+        text-align: center;
+        font-size: 40px;
+        line-height: 50px;
+        max-width: 100%;
+        margin-bottom: 22px;
+    }
+    .promo__description {
+        max-width: 260px;
+        text-align: center;
+        margin-bottom: 92px;
+    }
+    .promo__inner {
+        align-self: flex-end;
+        align-items: center;
+    }
+    .promo {
+        min-height: 850px;
+        background-position: top 140px right 50%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .promo {
+        min-height: 636px;
+        padding-bottom: 30px;
+        background-size: 210px 206px;
+        background-position: top 70px right 50%;
+    }
+    .promo__title {
+        font-size: 30px;
+        line-height: 38px;
+        letter-spacing: -1.2px;
+        margin-bottom: 24px;
+    }
+    .promo__description {
+        margin-bottom: 80px;
+    }
+}

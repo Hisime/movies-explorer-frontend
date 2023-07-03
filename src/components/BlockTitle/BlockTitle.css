@@ -1,0 +1,16 @@
+.block-title {
+    margin: 0;
+    padding-bottom: 23px;
+    font-size: 22px;
+    border-bottom: 1px solid #000;
+    font-weight: 400;
+    letter-spacing: -0.88px;
+}
+
+@media screen and (max-width: 500px) {
+    .block-title {
+        padding-bottom: 28px;
+        font-size: 18px;
+        letter-spacing: -0.72px;
+    }
+}
