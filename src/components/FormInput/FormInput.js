@@ -1,10 +1,10 @@
 import './FormInput.css';
 
-function FormInput({type, text}) {
+function FormInput({type, text, inputName, inputId}) {
     return (
         <div className="form-input">
             <label className="form-input__label">{text}</label>
-            <input className="form-input__textfield" type={type}/>
+            <input id={inputId} name={inputName} className="form-input__textfield" type={type}/>
         </div>
     );
 }
