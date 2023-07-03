@@ -21,8 +21,10 @@ function Movies({isHeaderOpened, changeHeaderState}) {
     return (
         <>
             <Header isLogged={true}/>
-            <SearchForm/>
-            <MoviesCardList cards={cards}/>
+            <main>
+                <SearchForm/>
+                <MoviesCardList cards={cards}/>
+            </main>
             <Footer/>
         </>
     );

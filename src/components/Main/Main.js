@@ -9,15 +9,17 @@ import Promo from "../Promo/Promo";
 
 function Main() {
     return (
-    <main>
+    <>
         <Header/>
-        <Promo/>
-        <AboutProject/>
-        <Techs/>
-        <AboutMe/>
-        <Portfolio/>
+        <main>
+            <Promo/>
+            <AboutProject/>
+            <Techs/>
+            <AboutMe/>
+            <Portfolio/>
+        </main>
         <Footer/>
-    </main>
+    </>
     );
 }
 

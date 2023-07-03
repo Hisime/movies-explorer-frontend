@@ -20,8 +20,10 @@ function SavedMovies() {
     return (
         <>
             <Header isLogged="true"/>
-            <SearchForm/>
-            <MoviesCardList cards={cards} isCardRemovable={true}/>
+            <main>
+                <SearchForm/>
+                <MoviesCardList cards={cards} isCardRemovable={true}/>
+            </main>
             <Footer/>
         </>
     );
