@@ -17,12 +17,17 @@
     letter-spacing: -1.2px;
 }
 
-.portfolio__list-item {
+.portfolio__link {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-top: 20px;
     padding-bottom: 20px;
+    color: #000;
+    text-decoration: none;
+}
+
+.portfolio__list-item {
     border-bottom: 1px solid #E8E8E8;
 }
 
