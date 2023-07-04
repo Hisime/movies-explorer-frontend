@@ -77,6 +77,10 @@
     padding-right: 40px;
 }
 
+.search-form__input:focus {
+    outline: 1px solid #2be080;
+}
+
 .search-form__input::placeholder {
     color: #A0A0A0;
 }

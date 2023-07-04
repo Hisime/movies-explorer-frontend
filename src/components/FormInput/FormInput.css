@@ -18,6 +18,10 @@
     margin-bottom: 20px;
 }
 
+.form-input__textfield:focus {
+    outline: 1px solid #2be080;
+}
+
 .form-input {
     display: flex;
     flex-direction: column;
