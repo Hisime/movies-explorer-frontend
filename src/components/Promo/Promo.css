@@ -6,7 +6,6 @@
     background-repeat: no-repeat;
     background-position: top 75px right 70px;
     box-sizing: border-box;
-    display: flex;
 }
 
 .promo__inner {
@@ -66,6 +65,7 @@
         align-items: center;
     }
     .promo {
+        display: flex;
         min-height: 850px;
         background-position: top 140px right 50%;
     }
