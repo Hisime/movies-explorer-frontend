@@ -22,6 +22,11 @@
     outline: 1px solid #2be080;
 }
 
+.form-input__textfield:invalid {
+    outline: 1px solid #FF4062;
+    color: #FF4062;
+}
+
 .form-input {
     display: flex;
     flex-direction: column;

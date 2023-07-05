@@ -7,11 +7,11 @@ import FormButton from "../FormButton/FormButton";
 function Login() {
     return (
         <main className="register">
-            <section className="register-section">
+            <form className="register-section">
                 <Logo/>
                 <FormTitle text="Рады видеть!"/>
-                <FormInput text="E-mail" type="email"/>
-                <FormInput text="Пароль" type="password"/>
+                <FormInput text="E-mail" type="email" required="required"/>
+                <FormInput text="Пароль" type="password"  required="required"/>
                 <div className="register-section__bottom">
                     <FormButton text="Войти"/>
                     <div className="register-section__tip">
@@ -20,7 +20,7 @@ function Login() {
                     </div>
                 </div>
 
-            </section>
+            </form>
         </main>
     );
 }
