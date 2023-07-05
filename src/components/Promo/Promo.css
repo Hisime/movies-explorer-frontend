@@ -37,10 +37,10 @@
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
-    background-color: transparent;
     border-radius: 3px;
+    color: #000;
+    text-decoration: none;
     border: 1px solid #000;
-    cursor: pointer;
     transition: opacity 0.5s;
 }
 

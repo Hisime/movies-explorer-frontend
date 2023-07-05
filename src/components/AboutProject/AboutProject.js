@@ -3,7 +3,7 @@ import BlockTitle from "../BlockTitle/BlockTitle";
 
 function AboutProject() {
     return (
-        <section className="about block-wrapper">
+        <section className="about block-wrapper" id="about">
             <BlockTitle titleText={"О проекте"}/>
             <div className="about__items">
                 <div className="about__item">
