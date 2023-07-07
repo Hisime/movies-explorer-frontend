@@ -1,0 +1,107 @@
+.about {
+    padding-top: 110px;
+    padding-bottom: 110px;
+}
+
+.about__items {
+    display: flex;
+    padding-top: 70px;
+    padding-bottom: 110px;
+    gap: 56px 40px;
+}
+
+.about__item-subtitle {
+    margin-top: 0;
+    margin-bottom: 26px;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.8px;
+}
+
+.about__item-text {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+}
+
+.about__timing-header {
+    font-size: 14px;
+    padding: 9px 14px;
+    background-color: #F2F2F2;
+}
+
+.about__timing-header--black {
+    background: #000;
+    color: #FFF;
+}
+
+.about__techs {
+    color: #A0A0A0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    padding-top: 14px;
+}
+
+.about__timing {
+    width: 100%;
+    text-align: center;
+}
+
+.about__column {
+    box-sizing: border-box;
+    width: 228px;
+}
+
+@media screen and (max-width: 768px) {
+    .about {
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
+    .about__items {
+        gap: 56px 30px;
+        padding-bottom: 93px;
+    }
+    .about__item-subtitle {
+        margin-bottom: 22px;
+    }
+    .about__item-text {
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .about__column {
+        width: 140px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .about {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+    .about__items {
+        flex-direction: column;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    .about__item-subtitle {
+        margin-bottom: 16px;
+        font-size: 18px;
+        letter-spacing: -0.72px;
+    }
+    .about__item-text {
+        font-size: 11px;
+        line-height: 16px;
+    }
+    .about__column {
+        width: 100px;
+    }
+    .about__timing-header {
+        padding: 11px 10px;
+        font-size: 11px;
+    }
+    .about__techs {
+        padding-top: 10px;
+        font-size: 11px;
+    }
+}
