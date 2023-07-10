@@ -1,12 +1,37 @@
 import './SearchForm.css';
+import {useFormValidation} from "../../utils/UseFormValidation";
+import {useEffect} from "react";
+import Storage from "../../utils/Storage";
 
-function SearchForm() {
+function SearchForm({handleSearchSubmit, handleShortFilmChange}) {
+    const {values, handleChange, setValue, formRef} = useFormValidation({
+        search: Storage.get('search') || '',
+        shortFilms: Storage.get('shortFilms') || false,
+    });
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        handleSearchSubmit({
+            search: values['search'],
+            shortFilms: values['shortFilms']
+        });
+    }
+
+    useEffect(() => {
+        handleShortFilmChange(values['shortFilms']);
+    }, [values.shortFilms])
+
+    useEffect(() => {
+        setValue('search',  Storage.get('search'))
+        setValue('shortFilms',  Storage.get('shortFilms'))
+    }, [setValue])
+
     return (
-        <form className="search-form block-wrapper">
+        <form className="search-form block-wrapper" ref={formRef} onSubmit={handleSubmit}>
             <div className="search-form__input-wrapper">
-                <input className="search-form__input" placeholder="Фильм" type="text"/>
+                <input className="search-form__input" id='search' name='search' value={values['search']} onChange={handleChange} required placeholder="Фильм" type="text"/>
                 <button className="search-form__button" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="46 0 34 34" width="46"
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="46 0 34 34" width="36"
                          height="36">
                         <g id="find">
                             <g id="find_2">
@@ -20,7 +45,7 @@ function SearchForm() {
                 </button>
             </div>
             <label className="search-form__toggle">
-                <input className="search-form__switch" type="checkbox"/>
+                <input className="search-form__switch" onChange={handleChange} checked={values['shortFilms']} id='shortFilms' name='shortFilms' type="checkbox"/>
                 <span className="search-form__switch-label"></span>
                 Короткометражки
             </label>

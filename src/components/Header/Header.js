@@ -1,28 +1,29 @@
 import './Header.css';
 import Logo from "../Logo/Logo";
 import {useState} from "react";
+import {NavLink} from "react-router-dom";
 
-function Header({isLogged}) {
+function Header({isLogged, isMain}) {
     const [isHeaderOpened, setIsHeaderOpened] = useState(false);
     return (
-        <header className={`header ${isLogged ? 'header--logged' : ''}`}>
-            <div className="block-wrapper header__inner">
+        <header className={`header ${isMain && 'header--main'}`}>
+            <div className={`block-wrapper header__inner`}>
                 <Logo/>
-                <div className={`header__overlay ${isHeaderOpened ? 'header__overlay--active' : ''}`}></div>
+                <div className={`header__overlay ${isHeaderOpened && 'header__overlay--active'}`}></div>
                 {isLogged ?
                     <>
-                        <div className={`header__right-part ${isHeaderOpened ? 'header__right-part--active' : ''}`}>
+                        <div className={`header__right-part ${isHeaderOpened && 'header__right-part--active'}`}>
                         <ul className="header__navigation">
-                            <li className="header__navigation-item"><a className="header__navigation-link" href="/">Главная</a></li>
-                            <li className="header__navigation-item"><a className="header__navigation-link header__navigation-link--active" href="/movies">Фильмы</a></li>
-                            <li className="header__navigation-item"><a className="header__navigation-link" href="/saved-movies">Сохранённые фильмы</a></li>
+                            <li className="header__navigation-item"><NavLink className="header__navigation-link" to="/">Главная</NavLink></li>
+                            <li className="header__navigation-item"><NavLink className="header__navigation-link" to="/movies">Фильмы</NavLink></li>
+                            <li className="header__navigation-item"><NavLink className="header__navigation-link" to="/saved-movies">Сохранённые фильмы</NavLink></li>
                         </ul>
-                        <a href="/profile" className="header__account-link">
+                        <NavLink to="/profile" className="header__account-link">
                             Аккаунт
                             <svg className="header__account-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path id="icon__COLOR:icon-main" fillRule="evenodd" clipRule="evenodd" d="M7.43004 7.96749C8.79146 7.40521 9.74951 6.06449 9.74951 4.5C9.74951 2.42893 8.07058 0.75 5.99951 0.75C3.92844 0.75 2.24951 2.42893 2.24951 4.5C2.24951 6.06451 3.20759 7.40525 4.56904 7.96751C3.17474 8.19979 1.89215 8.76573 0.808105 9.58019L2.18966 11.419C3.25095 10.6217 4.56849 10.1496 5.99961 10.1496C7.43073 10.1496 8.74828 10.6217 9.80957 11.419L11.1911 9.58019C10.107 8.7657 8.82439 8.19975 7.43004 7.96749Z" fill="black"/>
                             </svg>
-                        </a>
+                        </NavLink>
                         <button className="header__button-close" onClick={() => setIsHeaderOpened(false)}>
                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="7.16016" y="9.28249" width="3" height="22" transform="rotate(-45 7.16016 9.28249)" fill="black"/>
@@ -40,8 +41,8 @@ function Header({isLogged}) {
                     </>
                      :
                     <div className="header__login">
-                        <a href="/sign-up" className="header__link">Регистрация</a>
-                        <a href="/sign-in" className="header__button">Войти</a>
+                        <NavLink to="/sign-up" className="header__link">Регистрация</NavLink>
+                        <NavLink to="/sign-in" className="header__button">Войти</NavLink>
                     </div>}
             </div>
         </header>

@@ -5,6 +5,10 @@
     padding-bottom: 80px;
 }
 
+.movies__list:empty {
+    display: none;
+}
+
 .movies {
     padding-top: 70px;
     padding-bottom: 80px;

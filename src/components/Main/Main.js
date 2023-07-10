@@ -7,10 +7,10 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Promo from "../Promo/Promo";
 
-function Main() {
+function Main({loggedIn}) {
     return (
     <>
-        <Header/>
+        <Header isLogged={loggedIn} isMain={true}/>
         <main>
             <Promo/>
             <AboutProject/>

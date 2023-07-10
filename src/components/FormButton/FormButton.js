@@ -1,8 +1,8 @@
 import './FormButton.css';
 
-function FormButton({text}) {
+function FormButton({text, type = 'submit', disabled}) {
     return (
-        <button className="form-button" type="submit">{text}</button>
+        <button className="form-button" disabled={disabled} type={type}>{text}</button>
     );
 }
 
