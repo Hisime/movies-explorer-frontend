@@ -17,3 +17,7 @@
 
 ## Ссылка на макет
 https://disk.yandex.ru/d/YTyxsYZe3nXUyQ
+
+
+## Ссылка на pull request
+https://github.com/Hisime/movies-explorer-frontend/pull/2
