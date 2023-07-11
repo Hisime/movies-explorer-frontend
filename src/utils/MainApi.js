@@ -90,7 +90,7 @@ export class MainApi {
 }
 
 const mainApi = new MainApi({
-    baseUrl: 'https://hisime.movies.nomoredomains.rocks',
+    baseUrl: 'https://api.hisime.movies.nomoredomains.rocks',
     headers: {
         'Content-Type': 'application/json',
     },
