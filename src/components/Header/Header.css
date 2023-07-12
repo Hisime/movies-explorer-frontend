@@ -1,7 +1,11 @@
 .header {
-    background-color: #F3C1F8;
+    background-color: transparent;
     padding-top: 18px;
     padding-bottom: 18px;
+}
+
+.header.header--main {
+    background-color: #F3C1F8;
 }
 
 .header--logged {
@@ -88,7 +92,7 @@
     display: none;
 }
 
-.header__navigation-link--active {
+.header__navigation-link.active {
     font-weight: 500;
 }
 

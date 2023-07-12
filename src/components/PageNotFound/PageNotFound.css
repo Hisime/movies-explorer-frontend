@@ -28,6 +28,10 @@
     font-size: 16px;
 }
 
+.block-link {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
     .page-not-found {
         padding-bottom: 222px;
