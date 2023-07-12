@@ -9,7 +9,7 @@ function PageNotFound() {
                     <h1 className="page-not-found__title">404</h1>
                     <p className="page-not-found__text">Страница не найдена</p>
                 </div>
-                <span onClick={() => navigate(-1)} className="block-link">Назад</span>
+                <span onClick={() => navigate(-2)} className="block-link">Назад</span>
             </main>
     );
 }
