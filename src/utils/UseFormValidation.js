@@ -39,5 +39,5 @@ export function useFormValidation(initialValues = {}) {
         setValues((oldValues) => ({...oldValues, [name]: value }));
     }, [])
 
-    return { values, errors, isValid, handleChange, setValue, reset, formRef, setIsValid }
+    return { values, errors, isValid, handleChange, setValue, setErrors, reset, formRef, setIsValid }
 }

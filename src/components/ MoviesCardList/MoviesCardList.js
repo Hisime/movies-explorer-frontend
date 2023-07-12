@@ -3,21 +3,13 @@ import MoviesCard from "../ MoviesCard/MoviesCard";
 import {useEffect, useState} from "react";
 import Preloader from "../Preloader/Preloader";
 import {Debounce} from "../../utils/Debounce";
-
-const cardLoadCounts = {
-    BIG: {
-        initLoad: 12,
-        load: 3,
-    },
-    MEDIUM: {
-        initLoad: 8,
-        load: 2,
-    },
-    SMALL: {
-        initLoad: 5,
-        load: 2,
-    }
-}
+import {
+    BIG_SCREEN_SIZE_PX,
+    MEDIUM_SCREEN_SIZE_PX,
+    SCREEN_CARD_COUNT_BIG,
+    SCREEN_CARD_COUNT_MEDIUM,
+    SCREEN_CARD_COUNT_SMALL
+} from "../../utils/Constatnts";
 
 function MoviesCardList({cards, isSavedMoviesPage, error, handleAdd, handleRemove}) {
     const [cardsToShow, setCardsToShow] = useState(null)
@@ -35,13 +27,13 @@ function MoviesCardList({cards, isSavedMoviesPage, error, handleAdd, handleRemov
     /** Получает настройки количества карточек в ряду и подгрузки */
     function getCardInRowCount() {
         const windowWidth = window.innerWidth;
-        if (windowWidth > 768) {
-            return cardLoadCounts.BIG;
+        if (windowWidth > BIG_SCREEN_SIZE_PX) {
+            return SCREEN_CARD_COUNT_BIG;
         }
-        if (windowWidth > 500) {
-            return cardLoadCounts.MEDIUM;
+        if (windowWidth > MEDIUM_SCREEN_SIZE_PX) {
+            return SCREEN_CARD_COUNT_MEDIUM;
         }
-        return cardLoadCounts.SMALL;
+        return SCREEN_CARD_COUNT_SMALL;
     }
 
     const onLoadMoreClick = () => {
@@ -67,12 +59,21 @@ function MoviesCardList({cards, isSavedMoviesPage, error, handleAdd, handleRemov
 
     /** При смене ориентации экрана и ресайзинге, меняет настройки количества карточке */
     useEffect(() => {
-        ['resize', 'orientationchange'].forEach((eventName) => {
-            window.addEventListener(eventName, Debounce((e) => {
+        const resizeEventHandler = () => {
+            Debounce((e) => {
                 setCardInRowCount(getCardInRowCount());
-            }))
+            })
+        }
+
+        ['resize', 'orientationchange'].forEach((eventName) => {
+            window.addEventListener(eventName, resizeEventHandler)
         })
-    })
+        return () => {
+            ['resize', 'orientationchange'].forEach((eventName) => {
+                window.removeEventListener(eventName, resizeEventHandler)
+            })
+        }
+    }, [])
 
     /** При смене настроек количества карточке, подгружает дополнительные, если нужно */
     useEffect(() => checkCardItemsCount(), [cardInRowCount])
@@ -95,8 +96,8 @@ function MoviesCardList({cards, isSavedMoviesPage, error, handleAdd, handleRemov
         <section className="movies block-wrapper">
             <div className="movies__list">
                 {cardsToShow &&
-                    cardsToShow.map((item, index) =>
-                        <MoviesCard card={item} handleAdd={handleAdd} handleRemove={handleRemove} key={index}
+                    cardsToShow.map((item) =>
+                        <MoviesCard card={item} handleAdd={handleAdd} handleRemove={handleRemove} key={item.id || item.movieId}
                                     isLiked={item.isLiked} duration={parseMovieDuration(item.duration)}
                                     isRemovable={isSavedMoviesPage}/>)
                 }

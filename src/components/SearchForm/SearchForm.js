@@ -1,16 +1,19 @@
 import './SearchForm.css';
 import {useFormValidation} from "../../utils/UseFormValidation";
 import {useEffect} from "react";
-import Storage from "../../utils/Storage";
 
-function SearchForm({handleSearchSubmit, handleShortFilmChange}) {
-    const {values, handleChange, setValue, formRef} = useFormValidation({
-        search: Storage.get('search') || '',
-        shortFilms: Storage.get('shortFilms') || false,
+function SearchForm({handleSearchSubmit, isSearchRequired, filterInitValues, isDisabled}) {
+    const {values, handleChange, isValid, errors, setErrors, formRef} = useFormValidation({
+        search: filterInitValues?.search || '',
+        shortFilms: filterInitValues?.shortFilms || false,
     });
 
     function handleSubmit(e) {
         e.preventDefault();
+        if (!isValid) {
+            setErrors((oldErrors) => ({...oldErrors, 'search': 'Нужно ввести ключевое слово'}))
+            return;
+        }
         handleSearchSubmit({
             search: values['search'],
             shortFilms: values['shortFilms']
@@ -18,19 +21,18 @@ function SearchForm({handleSearchSubmit, handleShortFilmChange}) {
     }
 
     useEffect(() => {
-        handleShortFilmChange(values['shortFilms']);
+        handleSearchSubmit({
+            search: values['search'],
+            shortFilms: values['shortFilms']
+        });
     }, [values.shortFilms])
 
-    useEffect(() => {
-        setValue('search',  Storage.get('search'))
-        setValue('shortFilms',  Storage.get('shortFilms'))
-    }, [setValue])
-
     return (
-        <form className="search-form block-wrapper" ref={formRef} onSubmit={handleSubmit}>
+        <form className="search-form block-wrapper" noValidate ref={formRef} onSubmit={handleSubmit}>
             <div className="search-form__input-wrapper">
-                <input className="search-form__input" id='search' name='search' value={values['search']} onChange={handleChange} required placeholder="Фильм" type="text"/>
-                <button className="search-form__button" type="submit">
+                <input className="search-form__input" disabled={isDisabled} id='search' name='search' value={values['search']} onChange={handleChange} required={isSearchRequired} placeholder="Фильм" type="text"/>
+                {errors['search'] && <span className="error-text">Нужно ввести ключевое слово</span>}
+                <button className="search-form__button" type="submit" disabled={isDisabled}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="46 0 34 34" width="36"
                          height="36">
                         <g id="find">
@@ -45,7 +47,7 @@ function SearchForm({handleSearchSubmit, handleShortFilmChange}) {
                 </button>
             </div>
             <label className="search-form__toggle">
-                <input className="search-form__switch" onChange={handleChange} checked={values['shortFilms']} id='shortFilms' name='shortFilms' type="checkbox"/>
+                <input className="search-form__switch" disabled={isDisabled} onChange={handleChange} checked={values['shortFilms']} id='shortFilms' name='shortFilms' type="checkbox"/>
                 <span className="search-form__switch-label"></span>
                 Короткометражки
             </label>

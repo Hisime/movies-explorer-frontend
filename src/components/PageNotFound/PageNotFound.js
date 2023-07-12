@@ -1,14 +1,15 @@
 import './PageNotFound.css';
-import {NavLink} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function PageNotFound() {
+    const navigate = useNavigate();
     return (
             <main className="page-not-found">
                 <div className="page-not-found__inner">
                     <h1 className="page-not-found__title">404</h1>
                     <p className="page-not-found__text">Страница не найдена</p>
                 </div>
-                <NavLink to="/" className="block-link">Назад</NavLink>
+                <span onClick={() => navigate(-1)} className="block-link">Назад</span>
             </main>
     );
 }

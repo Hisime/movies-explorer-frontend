@@ -12,12 +12,13 @@ import api from "../../utils/MainApi";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Alert from "../Alert/Alert";
+import Storage from "../../utils/Storage";
+import {STORAGE_NAMES} from "../../utils/Constatnts";
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
-    const [isAuthorizing, setIsAuthorizing] = useState(false);
     const [alertMessage, setAlertMessage] = useState({
         message: '',
         isSuccess: false,
@@ -45,47 +46,43 @@ function App() {
 
     const onLogout = () => {
         api.logout().catch((e) => e).finally(() => {
-            localStorage.removeItem('id');
+            localStorage.removeItem(STORAGE_NAMES.ID);
+            Storage.remove(STORAGE_NAMES.LAST_SEARCH_SHORT_FILM);
+            Storage.remove(STORAGE_NAMES.LAST_SEARCH_TEXT);
             setLoggedIn(false);
             navigate('/')
         })
     }
 
     const onLogin = ({email, password}) => {
-        setIsAuthorizing(true);
-        api.authorize(email, password)
+        return api.authorize(email, password)
             .then(data => {
                 if (data._id) {
-                    localStorage.setItem('id', data._id)
+                    localStorage.setItem(STORAGE_NAMES.ID, data._id)
                     setLoggedIn(true)
                     setCurrentUser(data);
                     onNewMessage('');
                     navigate('/movies')
                 }
             })
-            .catch((err) => onNewMessage(err))
-            .finally(() => setIsAuthorizing(false))
+            .catch((err) => onNewMessage(err)).finally(() => true)
     }
 
     const onRegister = ({email, password, name}) => {
-        setIsAuthorizing(true);
-        api.register(email, password, name)
+        return api.register(email, password, name)
             .then(() => onLogin({email, password}))
-            .catch((err) => {
-                setIsAuthorizing(false)
-                onNewMessage(err);
-            })
+            .catch((err) => onNewMessage(err)).finally(() => true)
     }
 
     const onEditUser = ({email, name}) => {
-        api.updateUser(email, name).then((user) => {
+        return api.updateUser(email, name).then((user) => {
             setCurrentUser(user);
             onNewMessage('Данные пользователя изменены', true)
-        }).catch((err) => onNewMessage(err))
+        }).catch((err) => onNewMessage(err)).finally(() => true)
     }
 
     const tokenCheck = () => {
-        const id = localStorage.getItem('id');
+        const id = localStorage.getItem(STORAGE_NAMES.ID);
         if (!id) {
             return
         }
@@ -107,8 +104,8 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
             <Alert message={alertMessage.message.toString()} isSuccess={alertMessage.isSuccess} closeAlert={() => onNewMessage('')}></Alert>
             <Routes>
-                <Route path="/sign-up" element={<Register handleRegister={onRegister} isRegisterProcessing={isAuthorizing}/>}/>
-                <Route path="/sign-in" element={<Login handleLogin={onLogin} isRegisterProcessing={isAuthorizing}/>}/>
+                <Route path="/sign-up" element={<Register handleRegister={onRegister}/>}/>
+                <Route path="/sign-in" element={<Login handleLogin={onLogin}/>}/>
                 <Route path="/profile" element={<ProtectedRoute loggedIn={loggedIn} element={() => <Profile handleEditUser={onEditUser} handleLogout={onLogout}/>}/>}/>
                 <Route path="/movies" element={<ProtectedRoute loggedIn={loggedIn} element={() => <Movies handleAlert={onNewMessage}/>}/>}/>
                 <Route path="/saved-movies"

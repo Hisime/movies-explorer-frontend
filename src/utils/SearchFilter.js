@@ -1,16 +1,15 @@
-import Storage from "./Storage";
+import {SHORT_FILM_DURATION} from "./Constatnts";
 
 class SearchFilter {
-    filterMovies(movies) {
-        const search = Storage.get('search');
-        const shortFilms = Storage.get('shortFilms');
+    filterMovies(movies, search = '', shortFilms = false) {
         return movies.filter((movie) => {
-            if (shortFilms && movie.duration > 40) {
+            if (shortFilms && movie.duration > SHORT_FILM_DURATION) {
                 return false;
             }
             return movie.nameRU.toLowerCase().indexOf(search.toLowerCase()) !== -1;
         })
     }
+
     updateMoviesWithLiked(allMovies, likedMovies) {
         allMovies.forEach((movie) => {
             movie.isLiked = false;

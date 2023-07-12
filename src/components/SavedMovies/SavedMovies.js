@@ -1,5 +1,5 @@
 import './SavedMovies.css';
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../ MoviesCardList/MoviesCardList";
@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer";
 import mainApi from "../../utils/MainApi";
 import SearchFilter from "../../utils/SearchFilter";
 import Storage from "../../utils/Storage";
+import {STORAGE_NAMES} from "../../utils/Constatnts";
 
 function SavedMovies({handleAlert}) {
     const [movies, setMovies] = useState(null);
@@ -18,43 +19,30 @@ function SavedMovies({handleAlert}) {
                 const newState = prevState.filter((movie) => {
                     return movie._id !== card._id
                 });
-                Storage.set('savedMovies', newState);
+                Storage.set(STORAGE_NAMES.SAVED_MOVIES, newState);
                 return newState;
             })
         }).catch((err) => handleAlert(err))
-    }
-
-    const saveUserInputs = (search, shortFilms) => {
-        Storage.set('search', search);
-        Storage.set('shortFilms', shortFilms);
     }
 
     const onSearchSubmit = ({search, shortFilms}) => {
         filterMovies(search, shortFilms)
     }
 
-    const filterMovies = (search = Storage.get('search'), shortFilms = Storage.get('shortFilms')) => {
+    const filterMovies = (search, shortFilms) => {
         getUserMovies().then((movies) => {
-            setMovies(SearchFilter.filterMovies(movies));
+            setMovies(SearchFilter.filterMovies(movies, search, shortFilms));
             setIsError(false);
-            saveUserInputs(search, shortFilms);
         })
     }
 
-    const onShortFilmChange = (shortFilms) => {
-        Storage.set('shortFilms', shortFilms)
-        if (movies?.length) {
-            filterMovies()
-        }
-    }
-
     const getUserMovies = () => {
-        const storedMovies = Storage.get('savedMovies');
+        const storedMovies = Storage.get(STORAGE_NAMES.SAVED_MOVIES);
         if (storedMovies) {
             return Promise.resolve(storedMovies);
         }
         return mainApi.getMovies().then((movies) => {
-            Storage.set('savedMovies', movies);
+            Storage.set(STORAGE_NAMES.SAVED_MOVIES, movies);
             return movies.map((item) => {
                 item.isLiked = true;
                 return item;
@@ -62,18 +50,11 @@ function SavedMovies({handleAlert}) {
         });
     }
 
-    useEffect(() => {
-        getUserMovies().then((movies) => {
-            setMovies(SearchFilter.filterMovies(movies));
-        }).catch((err) => handleAlert(err))
-    }, [handleAlert])
-
-
     return (
         <>
             <Header isLogged="true"/>
             <main>
-                <SearchForm handleSearchSubmit={onSearchSubmit} handleShortFilmChange={onShortFilmChange}/>
+                <SearchForm handleSearchSubmit={onSearchSubmit}/>
                 <MoviesCardList handleRemove={handleRemove} cards={movies} error={error} isSavedMoviesPage={true}/>
             </main>
             <Footer/>

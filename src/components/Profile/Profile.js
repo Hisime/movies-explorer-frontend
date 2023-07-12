@@ -6,6 +6,7 @@ import {useFormValidation} from "../../utils/UseFormValidation";
 import {Patterns} from "../../utils/Patterns";
 
 function Profile({handleLogout, handleEditUser}) {
+    const [isDisabled, setIsDisabled] = useState(false);
     const currentUser = useContext(CurrentUserContext);
     const {values, errors, setIsValid, handleChange, setValue, isValid, formRef} = useFormValidation(
         {
@@ -17,10 +18,11 @@ function Profile({handleLogout, handleEditUser}) {
     const errorClassname = (name) => `popup__input ${errors[name] && 'profile__input--error'}`;
     function handleSubmit(e) {
         e.preventDefault();
+        setIsDisabled(true);
         handleEditUser({
             email: values['email'],
             name: values['name'],
-        });
+        }).finally(() => setIsDisabled(false))
     }
 
     useEffect(() => {
@@ -44,6 +46,7 @@ function Profile({handleLogout, handleEditUser}) {
                                 <input className={`profile__input ${errorClassname('name')}`} data-diff={userValuesOnInit?.name}
                                        pattern={Patterns.USERNAME.pattern}
                                        onChange={handleChange}
+                                       disabled={isDisabled}
                                        name='name'
                                        id='name'
                                        required
@@ -57,6 +60,7 @@ function Profile({handleLogout, handleEditUser}) {
                                        onChange={handleChange}
                                        data-diff={userValuesOnInit?.email}
                                        name='email'
+                                       disabled={isDisabled}
                                        id='email'
                                        required
                                        data-pattern-error-message={Patterns.EMAIL.message} value={values['email'] || ''}
@@ -66,7 +70,7 @@ function Profile({handleLogout, handleEditUser}) {
                         </div>
                         <div className="profile__buttons">
                             <button className="profile__button profile__button--edit" type='submit'
-                                    disabled={!isValid}>Редактировать
+                                    disabled={!isValid || isDisabled}>Редактировать
                             </button>
                             <button className="profile__button profile__button--danger" type='button'
                                     onClick={handleLogout}>Выйти из

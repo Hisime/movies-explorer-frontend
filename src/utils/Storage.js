@@ -1,20 +1,17 @@
 class Storage {
     set(storageName, value) {
-        const userId = localStorage.getItem('id');
-        localStorage.setItem(`${userId}-${storageName}`, JSON.stringify(value));
+        localStorage.setItem(storageName, JSON.stringify(value));
     }
 
     get(storageName) {
-        const userId = localStorage.getItem('id');
-        const value = localStorage.getItem(`${userId}-${storageName}`);
+        const value = localStorage.getItem(storageName);
         if (value && isJsonString(value)) {
             return JSON.parse(value);
         }
     }
 
     remove(storageName) {
-        const userId = localStorage.getItem('id');
-        localStorage.removeItem(`${userId}-${storageName}`);
+        localStorage.removeItem(storageName);
     }
 }
 
